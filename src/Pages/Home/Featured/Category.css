@@ -1,0 +1,10 @@
+.Category_bgImg{
+    background-image: url('../../../assets/home/featured.jpg');
+    background-color: #00000000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    padding: 10px 0;
+    color: white;
+}
