@@ -12,14 +12,24 @@ const Header = () => {
             HOME 
           </NavLink>
         </li>,
-        <li key="blogs" className="font-bold bg-none hover:bg-none">
+        <li key="menu" className="font-bold bg-none hover:bg-none">
           <NavLink
-            to="/blogs"
+            to="/menu"
             className={({ isActive }) =>
               isActive ? "text-primary bg-none" : "font-bold"
             }
           >
-          CONTACT US
+         Menu
+          </NavLink>
+        </li>,
+        <li key="order" className="font-bold bg-none hover:bg-none">
+          <NavLink
+            to="/order/salad"
+            className={({ isActive }) =>
+              isActive ? "text-primary bg-none" : "font-bold"
+            }
+          >
+          Order Food
           </NavLink>
         </li>,
         <li key="bookmarks" className="font-bold bg-none hover:bg-none">
@@ -32,16 +42,7 @@ const Header = () => {
           DASHBOARD
           </NavLink>
         </li>,
-        <li key="bookmarks" className="font-bold bg-none hover:bg-none">
-          <NavLink
-            to="/bookmarks"
-            className={({ isActive }) =>
-              isActive ? "text-primary bg-none" : "font-bold"
-            }
-          >
-          OUR MENU
-          </NavLink>
-        </li>,
+       
         <li key="bookmarks" className="font-bold bg-none hover:bg-none">
           <NavLink
             to="/bookmarks"
