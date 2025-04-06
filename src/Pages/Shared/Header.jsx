@@ -1,6 +1,22 @@
+import { useContext } from "react";
+
 import { NavLink } from "react-router-dom";
 
+import { AuthContext } from "../../Provider/AuthProvider";
+
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };
+
+
     const menu = [
         <li key="home" className="font-bold bg-none hover:bg-none">
           <NavLink
@@ -9,7 +25,7 @@ const Header = () => {
               isActive ? "text-primary bg-none" : "font-bold"
             }
           >
-            HOME 
+            Home 
           </NavLink>
         </li>,
         <li key="menu" className="font-bold bg-none hover:bg-none">
@@ -32,27 +48,47 @@ const Header = () => {
           Order Food
           </NavLink>
         </li>,
-        <li key="bookmarks" className="font-bold bg-none hover:bg-none">
+        <li key="contact-us" className="font-bold bg-none hover:bg-none">
           <NavLink
-            to="/bookmarks"
+            to="/contact-us"
             className={({ isActive }) =>
               isActive ? "text-primary bg-none" : "font-bold"
             }
           >
-          DASHBOARD
+          Contact Us
           </NavLink>
         </li>,
+        <li key="dashboard" className="font-bold bg-none hover:bg-none">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? "text-primary bg-none" : "font-bold"
+            }
+          >
+          Dashboard
+          </NavLink>
+        </li>,
+
+        user ? (
+          <li key="logout" className="font-bold ">
+          <span className="text-primary font-bold">{user.displayName}</span>
+          <a className="btn" onClick={handleLogOut}>SignOut</a>
+          </li>
+        ) : (
+          <li key="login" className="font-bold">
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : "font-bold"
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+        )
+        
        
-        <li key="bookmarks" className="font-bold bg-none hover:bg-none">
-          <NavLink
-            to="/bookmarks"
-            className={({ isActive }) =>
-              isActive ? "text-primary bg-none" : "font-bold"
-            }
-          >
-          OUR SHOP
-          </NavLink>
-        </li>,
+        
       ];
   return (
     <div className="navbar fixed  z-10 bg-opacity-30 bg-black text-white max-w-screen-xl mx-auto">
@@ -83,17 +119,16 @@ const Header = () => {
         </div>
         <a className="btn  btn-ghost hover:bg-none ">BISTRO BOSS <br/> Restaurant</a>
       </div>
-      <div className="navbar-center hidden lg:flex ">
+      <div className="navbar-end hidden lg:flex ">
         <ul className="menu menu-horizontal px-1">
             {menu}
         </ul>
       </div>
-      <div className="navbar-end">
-       
-        <a className="btn">SignOut</a>
-      </div>
+      
     </div>
   );
 };
 
 export default Header;
+
+          
