@@ -2,11 +2,14 @@ import { useContext } from "react";
 
 import { NavLink } from "react-router-dom";
 
+import { FaCartPlus } from "react-icons/fa";
+
 import { AuthContext } from "../../Provider/AuthProvider";
+import useCart from "../../hooks/useCart";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -68,10 +71,24 @@ const Header = () => {
           Dashboard
           </NavLink>
         </li>,
+        
+        <li key="cart" className="font-bold bg-none hover:bg-none">
+          <NavLink
+            to="/dashboard/cart"
+          >
+          <span className="btn bg-none relative">
+          <FaCartPlus />
+          
+          </span>
+<span className="absolute -top-2 -right-2 badge badge-secondary">{cart.length}</span>
+         
+
+          </NavLink>
+        </li>,
 
         user ? (
           <li key="logout" className="font-bold ">
-          <span className="text-primary font-bold">{user.displayName}</span>
+          
           <a className="btn" onClick={handleLogOut}>SignOut</a>
           </li>
         ) : (

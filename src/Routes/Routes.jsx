@@ -4,10 +4,12 @@ import {
     
   } from "react-router-dom";
 
+import Dashboard from "../Layouts/Dashboard";
 import MainLayout from "../Layouts/MainLayout";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 import Home from "../Pages/Home/Home/Home";
 import Menu from "../Pages/Menu/Menu/Menu";
 import Order from "../Pages/Order/Order/Order";
@@ -47,7 +49,7 @@ export const router = createBrowserRouter([
             element: <SignUp />,
         },
         {
-          path:'/dashboard',
+          path:'/secret',
           element:<PrivateRoutes><Secret></Secret></PrivateRoutes>
         },
         {
@@ -56,4 +58,14 @@ export const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path: "dashboard",
+      element: <Dashboard />,
+      children: [
+        {
+          path: "cart",
+          element: <Cart />,
+        }
+      ]
+    }
   ]);
